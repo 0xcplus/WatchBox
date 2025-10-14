@@ -1,0 +1,64 @@
+name: Deploy Flutter Web App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3' #flutter --version
+
+    - name: Install Dependencies
+      run: flutter pub get
+
+    - name: Run Node.js Server
+      run: | #next react would takes much time. > npm install next react react-dom
+        npm install
+        node api/getApiKey.js & 
+        sleep 5
+
+    - name: Create config directory if not exists
+      run: mkdir -p assets/config
+
+    - name: Create .env file with dummy data
+      run: echo "OPEN_AI_API_KEY='dummy_data'" > assets/config/.env
+
+    - name: Build Web
+      run: flutter build web --release
+
+    - name: Copy WatchBox logo files to build
+      run: |
+        cp assets/watchbox/favicon.png build/web/favicon.png
+        cp assets/watchbox/Icon-192.png build/web/icons/Icon-192.png
+        cp assets/watchbox/Icon-maskable-192.png build/web/icons/Icon-maskable-192.png
+    #cp assets/watchbox/Icon-512.png build/web/icons/Icon-512.png
+    #cp assets/watchbox/Icon-maskable-512.png build/web/icons/Icon-maskable-512.png
+
+    #sed -i 's|<link rel="icon" type="image/png" href="favicon.png">|<link rel="icon" type="image/png" sizes=href="favicon.png">|g' build/web/index.html
+
+    - name: Update base href and mobile-web-app-capable meta tag
+      run: |
+        sed -i 's|<base href=".*">|<base href="/WatchBox/">|g' build/web/index.html
+        if ! grep -q 'meta name="mobile-web-app-capable"' build/web/index.html; then
+          sed -i 's|</head>|<meta name="mobile-web-app-capable" content="yes">\n</head>|g' build/web/index.html
+        fi
+
+    - name: Add .nojekyll
+      run: echo > build/web/.nojekyll
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.ICT_deploy_key }}
+        publish_dir: build/web
+        publish_branch: gh-pages

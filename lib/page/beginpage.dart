@@ -61,12 +61,13 @@ class _BeginPageState extends State<BeginPage> {
                 child: const CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage('assets/images/watchbox.png'), // 이미지
+                  backgroundColor: Colors.white70,
                 ),
               ),
 
               //계정 이름
               accountName: Text(
-                'Oslar', //수정해야하나?
+                'WatchBox',
                 style: initTextStyle(
                   fontSize: 27, fontWeight: FontWeight.bold,
                   color:const Color.fromARGB(255, 40, 40, 40)),

@@ -4,7 +4,8 @@ import 'package:ictproject/page/settingpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'homepage.dart';
-import 'chatpage.dart';
+import 'imageuploadpage.dart';
+//import 'chatpage.dart';
 import '../index/standard.dart';
 
 //지정
@@ -21,7 +22,7 @@ class BeginPage extends StatefulWidget {
 }
 
 class _BeginPageState extends State<BeginPage> {
-  Widget _selectedBody = ChatArea();
+  Widget _selectedBody = ImageUploadArea();
 
   void _updateBody(Widget newBody){
     setState(() {
@@ -129,12 +130,12 @@ class _BeginPageState extends State<BeginPage> {
               trailing: const Icon(Icons.navigate_next),
             ),
 
-            //채팅
+            //분석
             ListTile(
               leading: const Icon(Icons.chat),
-              title:Text('채팅', style: initTextStyle()),
+              title:Text('분석', style: initTextStyle()),
               onTap:(){
-                _updateBody(ChatArea());
+                _updateBody(ImageUploadArea());
                 Navigator.pop(context);
               },
               trailing: const Icon(Icons.navigate_next),

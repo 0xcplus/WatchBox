@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io' show Platform;
 
-import 'chatpagemsg.dart';
+import '../function/chatpagemsg.dart';
 import '../index/standard.dart';
 import '../openai/openai.dart';
 
-String url = 'https://github.com/0xcplus/Oslar/';
+String url = 'https://github.com/0xcplus/WatchBox/';
 StreamController<String> streamController = StreamController<String>(); 
 
 List messageList = [];              //수정 필요

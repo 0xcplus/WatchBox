@@ -16,7 +16,7 @@ String errorFind = "";
 Future<void> main() async{
   //WidgetsFlutterBinding.ensureInitialized();
 
-  OpenAI.apiKey = await returnApiKey();;
+  OpenAI.apiKey = await returnApiKey();
   runApp(const MyApp());
 }
 
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Oslar',
+      title: 'WatchBox',
 
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

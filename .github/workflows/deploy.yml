@@ -41,8 +41,8 @@ jobs:
         cp assets/watchbox/favicon.png build/web/favicon.png
         cp assets/watchbox/Icon-192.png build/web/icons/Icon-192.png
         cp assets/watchbox/Icon-maskable-192.png build/web/icons/Icon-maskable-192.png
-    #cp assets/watchbox/Icon-512.png build/web/icons/Icon-512.png
-    #cp assets/watchbox/Icon-maskable-512.png build/web/icons/Icon-maskable-512.png
+        cp assets/watchbox/Icon-512.png build/web/icons/Icon-512.png
+        cp assets/watchbox/Icon-maskable-512.png build/web/icons/Icon-maskable-512.png
 
     #sed -i 's|<link rel="icon" type="image/png" href="favicon.png">|<link rel="icon" type="image/png" sizes=href="favicon.png">|g' build/web/index.html
 

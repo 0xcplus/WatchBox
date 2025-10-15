@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../openai/chatmode.dart';
-import '../function/markdown.dart';
+import 'markdown.dart';
 import '../index/standard.dart';
 
 Map<String, dynamic> mapMessage(

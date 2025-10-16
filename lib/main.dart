@@ -15,7 +15,6 @@ String errorFind = "";
 
 Future<void> main() async{
   //WidgetsFlutterBinding.ensureInitialized();
-
   OpenAI.apiKey = await returnApiKey();
   runApp(const MyApp());
 }

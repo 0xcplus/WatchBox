@@ -3,11 +3,13 @@ import 'package:dart_openai/dart_openai.dart';
 
 import 'chatmode.dart';
 
+String rollString = "당신은 용접 결함 탐지 AI 모델, WatchBox입니다. 감지된 결함의 개수, 종류, 신뢰도를 토대로 즉각 조치를 취할 수 있도록 안내하세요. 100자 이내로 간결하고 신속하게, 그러나 공격적이지는 않게 전달하세요.";
+
 //ChatGPT 함수
 final requestMessages = [OpenAIChatCompletionChoiceMessageModel(
   content: [
     OpenAIChatCompletionChoiceMessageContentItemModel.text(
-      'helpful assistant',
+      rollString,
     ),
   ],
   role: OpenAIChatMessageRole.assistant,

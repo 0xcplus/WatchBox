@@ -230,39 +230,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
 
             const SizedBox(height: 20),
 
-            // 분석 결과 텍스트
-            if (_result != null && detectedObjects != null)
-              Card(
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        "📄 YOLO 분석 결과",
-                        style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        conclusionReturn(detectedObjects),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          height: 1.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-            const SizedBox(height: 20),
-
-            // ChatGPT 출력
+                        // ChatGPT 출력
             if (_result != null)
               Card(
                 elevation: 3,
@@ -288,6 +256,38 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                                 fontSize: 16, color: Colors.black87),
                           );
                         },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+            const SizedBox(height: 20),
+
+            // 분석 결과 텍스트
+            if (_result != null && detectedObjects != null)
+              Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        "📄 YOLO 분석 결과",
+                        style:
+                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        conclusionReturn(detectedObjects),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          height: 1.5,
+                        ),
                       ),
                     ],
                   ),

@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
 
                   // Headline
                   const Text(
-                    "WatchBox : 용접 결함 검출 AI 모델",
+                    "WatchBox\n용접 결함 검출 AI 모델",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 28,
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    "육안으로 식별하기 어려운 결함, 일일이 확인해야 할까?",
+                    "눈으로 찾아내기 어려운 결함,\n일일이 확인해야 할까?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -80,8 +80,7 @@ class HomePage extends StatelessWidget {
                         "어디서든 쉽고 빠르게, 활용 가능한 앱입니다. "
                         "Ultralytics Yolov11 모델을 활용하여 알루미늄·강재에 대한 "
                         "육안 및 방사능 검사 이미지를 학습하고, "
-                        "용접 부위의 결함을 탐지하고 분류합니다.\n\n"
-                        "애플리케이션 형태로 작동해 접근성을 용이하게 합니다.",
+                        "용접 부위의 결함을 탐지하고 분류합니다.",
                         style: TextStyle(fontSize: 16, height: 1.5),
                       ),
                     ],
@@ -115,8 +114,7 @@ class HomePage extends StatelessWidget {
                       SizedBox(height: 12),
                       Text(
                         "동남권ICT 이노베이션스퀘이션스퀘어 2025 부트캠프 프로젝트의 일환입니다. "
-                        "용접 결함을 탐지, 분류하여 사전에 신속한 조치를 취할 수 있도록 하는 프로젝트입니다.\n\n"
-                        "이 연구는 과학기술정보통신부의 재원으로 한국지능정보사회진흥원의 지원을 받아 구축된 \"데이터명\"을 활용하여 수행되었습니다.",
+                        "용접 결함을 탐지, 분류하여 사전에 신속한 조치를 취할 수 있도록 하는 애플리케이션입니다.",
                         style: TextStyle(fontSize: 16, height: 1.5),
                       ),
                     ],
@@ -149,8 +147,8 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 12),
                       Text(
-                        "본 연구에 활용된 데이터는 AI 허브(aihub.or.kr)에서 다운로드 받으실 수 있습니다.\n"
-                        "https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&srchDataRealmCode=REALM012&aihubDataSe=data&dataSetSn=71761",
+                         "이 연구는 과학기술정보통신부의 재원으로 한국지능정보사회진흥원의 지원을 받아 구축된 \"창원 지역 특화산업 고도화 및 디지털 전환 촉진을 위한 용접 AI 학습 데이터 구축\"을 활용하여 수행되었습니다.\n"
+                        "본 연구에 활용된 데이터는 AI 허브(aihub.or.kr)에서 다운로드 받으실 수 있습니다.",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey,

@@ -124,21 +124,6 @@ class _BeginPageState extends State<BeginPage> {
       body: SafeArea(
         child: Column(
           children: [
-            // 페이지 제목
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              color: const Color.fromARGB(255, 53, 53, 53),
-              child: Text(
-                _selectedIndex == 0 ? '홈' : '분석',
-                textAlign: TextAlign.center,
-                style: initTextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
             Expanded(child: _pages[_selectedIndex]),
           ],
         ),

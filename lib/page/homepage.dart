@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
 
                   // Headline
                   const Text(
-                    "육안으로 식별하기 어려운 결함, 일일이 확인해야 할까?",
+                    "WatchBox : 용접 결함 검출 AI 모델",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 28,
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    "WatchBox : 용접 결함 검출 AI 모델",
+                    "육안으로 식별하기 어려운 결함, 일일이 확인해야 할까?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,

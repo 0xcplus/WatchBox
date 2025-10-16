@@ -131,6 +131,7 @@ class _BeginPageState extends State<BeginPage> {
               color: const Color.fromARGB(255, 53, 53, 53),
               child: Text(
                 _selectedIndex == 0 ? '홈' : '분석',
+                textAlign: TextAlign.center,
                 style: initTextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,

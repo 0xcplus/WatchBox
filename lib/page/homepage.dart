@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,10 +19,15 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   // Logo
-                  Image.asset(
-                    'images/watchbox.png',
-                    width: 180,
-                  ),
+                  kIsWeb
+                    ? Image.network(
+                        'watchbox.png', // GitHub Pages에 복사한 build/web 경로 기준
+                        width: 180,
+                    )
+                    : Image.asset(
+                        'assets/images/watchbox.png', // 앱/모바일용 로컬 에셋
+                        width: 180,
+                    ),
                   const SizedBox(height: 20),
 
                   // Headline

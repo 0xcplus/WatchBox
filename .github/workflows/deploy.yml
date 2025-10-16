@@ -38,6 +38,7 @@ jobs:
 
     - name: Copy WatchBox logo files to build
       run: |
+        cp assets/images/watchbox.png build/web/watchbox.png
         cp assets/watchbox/favicon.png build/web/favicon.png
         cp assets/watchbox/Icon-192.png build/web/icons/Icon-192.png
         cp assets/watchbox/Icon-maskable-192.png build/web/icons/Icon-maskable-192.png

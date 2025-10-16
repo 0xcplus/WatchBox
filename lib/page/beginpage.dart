@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ictproject/page/settingpage.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
 import 'homepage.dart';
 import 'imageuploadpage.dart';
-//import 'chatpage.dart';
 import '../index/standard.dart';
 
-//지정
+// 지정
 String url = 'https://github.com/0xcplus/WatchBox/';
 Color infLinkColor = const Color.fromARGB(255, 126, 141, 134);
 
-//페이지 구성
+// 페이지 구성
 class BeginPage extends StatefulWidget {
   const BeginPage({super.key, required this.title});
   final String title;
@@ -22,31 +19,19 @@ class BeginPage extends StatefulWidget {
 }
 
 class _BeginPageState extends State<BeginPage> {
-  Widget _selectedBody = ImageUploadArea();
+  int _selectedIndex = 1; // 초기 페이지: 분석
+  final List<Widget> _pages = [HomePage(), ImageUploadPage()];
 
-  void _updateBody(Widget newBody){
+  void _onItemTapped(int index) {
     setState(() {
-      _selectedBody = newBody;
+      _selectedIndex = index;
     });
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          widget.title,
-          style: initTextStyle(
-            fontWeight: FontWeight.bold,fontSize: 30, 
-            color:const Color.fromARGB(255, 251, 251, 251),
-          ),),
-        elevation: 4,
-        backgroundColor: const Color.fromARGB(255, 53, 53, 53),
-      ),
-
-      body: _selectedBody,
-      
+      // Drawer 유지
       drawer: Drawer(
         child: ListView(
           children: [
@@ -54,27 +39,21 @@ class _BeginPageState extends State<BeginPage> {
               currentAccountPicture: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    initShadowSetting()
-                  ],
+                  boxShadow: [initShadowSetting()],
                 ),
-
                 child: const CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('assets/images/watchbox.png'), // 이미지
+                  backgroundImage: AssetImage('assets/images/watchbox.png'),
                   backgroundColor: Colors.white70,
                 ),
               ),
-
-              //계정 이름
               accountName: Text(
                 'WatchBox',
                 style: initTextStyle(
-                  fontSize: 27, fontWeight: FontWeight.bold,
-                  color:const Color.fromARGB(255, 40, 40, 40)),
-              ) ,
-
-              //계정 이메일
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 40, 40, 40)),
+              ),
               accountEmail: MouseRegion(
                 onEnter: (_) {
                   setState(() {
@@ -88,9 +67,9 @@ class _BeginPageState extends State<BeginPage> {
                 },
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  onTap: () async{
+                  onTap: () async {
                     final Uri uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)){
+                    if (await canLaunchUrl(uri)) {
                       await launchUrl(uri);
                     } else {
                       throw 'Could not launch $url';
@@ -99,60 +78,87 @@ class _BeginPageState extends State<BeginPage> {
                   child: Text(
                     url,
                     style: initTextStyle(
-                      fontSize: 20,
-                      color:infLinkColor, 
+                      fontSize: 18,
+                      color: infLinkColor,
                       decoration: TextDecoration.underline,
-                    )
+                    ),
                   ),
                 ),
               ),
-
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 93, 238, 204), //const Color.fromARGB(255, 85, 225, 160),
+                color: const Color.fromARGB(255, 93, 238, 204),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(10.0),
                   bottomRight: Radius.circular(10.0),
                 ),
-                boxShadow: [
-                    initShadowSetting(spreadRadius: 3, blurRadius: 5)
-                  ],
+                boxShadow: [initShadowSetting(spreadRadius: 3, blurRadius: 5)],
               ),
             ),
 
-            //홈
+            const SizedBox(height: 10),
+
+            // Drawer 내 메뉴 (선택 옵션)
             ListTile(
-              leading: const Icon(Icons.home),
-              title:Text('홈', style: initTextStyle()),
-              onTap:(){
-                _updateBody(HomeArea());
+              leading: const Icon(Icons.home, color: Colors.black87),
+              title: Text('홈', style: initTextStyle(fontSize: 18)),
+              onTap: () {
+                _onItemTapped(0);
                 Navigator.pop(context);
               },
               trailing: const Icon(Icons.navigate_next),
             ),
-
-            //분석
             ListTile(
-              leading: const Icon(Icons.chat),
-              title:Text('분석', style: initTextStyle()),
-              onTap:(){
-                _updateBody(ImageUploadArea());
-                Navigator.pop(context);
-              },
-              trailing: const Icon(Icons.navigate_next),
-            ),
-
-             //설정
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title:Text('설정', style: initTextStyle()),
-              onTap:(){
-                _updateBody(SettingArea());
+              leading: const Icon(Icons.analytics, color: Colors.black87),
+              title: Text('분석', style: initTextStyle(fontSize: 18)),
+              onTap: () {
+                _onItemTapped(1);
                 Navigator.pop(context);
               },
               trailing: const Icon(Icons.navigate_next),
             ),
           ],
         ),
+      ),
+
+      // 본문
+      body: SafeArea(
+        child: Column(
+          children: [
+            // 페이지 제목
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              color: const Color.fromARGB(255, 53, 53, 53),
+              child: Text(
+                _selectedIndex == 0 ? '홈' : '분석',
+                style: initTextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Expanded(child: _pages[_selectedIndex]),
+          ],
+        ),
+      ),
+
+      // 하단 내비게이션 바
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blueGrey[900],
+        unselectedItemColor: Colors.grey[500],
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '홈',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.analytics),
+            label: '분석',
+          ),
+        ],
       ),
     );
   }

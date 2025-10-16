@@ -1,22 +1,179 @@
 import 'package:flutter/material.dart';
 
-class HomeArea extends StatefulWidget {
-  const HomeArea({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomeArea> createState() => _HomeAreaState();
-}
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[50],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Hero Section
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+              color: Colors.blueGrey[900],
+              child: Column(
+                children: [
+                  // Logo
+                  Image.asset(
+                    'images/watchbox.png',
+                    width: 180,
+                  ),
+                  const SizedBox(height: 20),
 
-class _HomeAreaState extends State<HomeArea> {
-  @override
-  Widget build(BuildContext context){
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text('This is Home!')
-        )
-      ]
+                  // Headline
+                  const Text(
+                    "육안으로 식별하기 어려운 결함, 일일이 확인해야 할까?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    "WatchBox : 용접 결함 검출 AI 모델",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            // App Description Card
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "앱 소개",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        "어디서든 쉽고 빠르게, 활용 가능한 앱입니다. "
+                        "Ultralytics Yolov11 모델을 활용하여 알루미늄·강재에 대한 "
+                        "육안 및 방사능 검사 이미지를 학습하고, "
+                        "용접 부위의 결함을 탐지하고 분류합니다.\n\n"
+                        "애플리케이션 형태로 작동해 접근성을 용이하게 합니다.",
+                        style: TextStyle(fontSize: 16, height: 1.5),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Project Info Card
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "프로젝트 정보",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        "동남권ICT 이노베이션스퀘이션스퀘어 2025 부트캠프 프로젝트의 일환입니다. "
+                        "용접 결함을 탐지, 분류하여 사전에 신속한 조치를 취할 수 있도록 하는 프로젝트입니다.\n\n"
+                        "이 연구는 과학기술정보통신부의 재원으로 한국지능정보사회진흥원의 지원을 받아 구축된 \"데이터명\"을 활용하여 수행되었습니다.",
+                        style: TextStyle(fontSize: 16, height: 1.5),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Data Source Card
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "데이터 출처",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        "본 연구에 활용된 데이터는 AI 허브(aihub.or.kr)에서 다운로드 받으실 수 있습니다.\n"
+                        "https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&srchDataRealmCode=REALM012&aihubDataSe=data&dataSetSn=71761",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          height: 1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 50),
+
+            // Footer
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(24),
+              color: Colors.blueGrey[900],
+              child: const Center(
+                child: Text(
+                  "© 2025 WatchBox.",
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -15,8 +15,25 @@ String errorFind = "";
 
 Future<void> main() async{
   //WidgetsFlutterBinding.ensureInitialized();
+  await pingServer();
   OpenAI.apiKey = await returnApiKey();
   runApp(const MyApp());
+}
+
+// Flask 서버 활성화
+Future<void> pingServer() async {
+  const String flaskUrl = "https://watchbox-20924868085.asia-northeast3.run.app/start"; // 실제 Flask 서버 주소로 변경
+
+  try {
+    final response = await http.get(Uri.parse(flaskUrl));
+    if (response.statusCode == 200) {
+      print('✅ Flask 서버 활성화 성공');
+    } else {
+      print('⚠️ Flask 서버 응답 코드: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('❌ Flask 서버 깨우기 실패: $e');
+  }
 }
 
 //favicon.png

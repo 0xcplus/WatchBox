@@ -11,15 +11,6 @@ import 'openai/apikeyfetch.dart'; //'env/env.dart';
 import 'page/beginpage.dart';
 import 'index/standard.dart';
 
-String errorFind = "";
-
-Future<void> main() async{
-  //WidgetsFlutterBinding.ensureInitialized();
-  await pingServer();
-  OpenAI.apiKey = await returnApiKey();
-  runApp(const MyApp());
-}
-
 // Flask 서버 활성화
 Future<void> pingServer() async {
   const String flaskUrl = "https://watchbox-20924868085.asia-northeast3.run.app/start"; // 실제 Flask 서버 주소로 변경
@@ -48,8 +39,76 @@ Future<String> fetchApiKey() async {
   }
 }
 
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    // Flask 서버 활성화
+    await pingServer();
+
+    // OpenAI 키 설정
+    OpenAI.apiKey = await returnApiKey();
+
+    // 준비 완료 시 다음 화면으로 전환
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomePage()),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(color: Colors.white),
+            SizedBox(height: 16),
+            Text(
+              "서버를 준비 중입니다...",
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

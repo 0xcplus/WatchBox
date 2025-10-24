@@ -1,10 +1,10 @@
 #FILE
-test
-linux
-ios
-macos
-web
-windows
+/test
+/linux
+/ios
+/macos
+/web
+/windows
 
 #OPENAI_API_KEY
 assets/config/.env
